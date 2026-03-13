@@ -17,7 +17,7 @@ Drop this link into the `<head>` of your HTML file to instantly apply:
 
 FontAwesome:
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 ```
 
 Google Font - Aldrich:
