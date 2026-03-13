@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Minimal-UI | s17 Labs</title>
+      <
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/s17labs/minimal-ui@main/minimal-ui.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+      <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+      <style>
+         section {
+         margin-bottom: 4rem;
+         }
+         .demo-label {
+         font-size: 0.8rem;
+         text-transform: uppercase;
+         letter-spacing: 0.1em;
+         color: var(--mu-accent);
+         margin-bottom: 1rem;
+         display: block;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container fade-in">
+         <header class="text-center" style="margin: 4rem 0;">
+            <h1><span class="brand-cube"></span> Minimal-UI</h1>
+            <p>Minimalist CSS framework for rapid prototyping by <b><a href="https://s17labs.github.io">s17 Labs</a></b>.</p>
+            <div class="flex justify-center gap-1" style="margin-top: 2rem;">
+               <a href="https://github.com/s17labs/minimal-ui" class="btn">
+               <i class="fa-brands fa-github"></i>View Source
+               </a>
+            </div>
+         </header>
+         <hr style="border: 0; border-top: 1px solid var(--mu-surface); margin: 3rem 0;">
+         <section>
+            <span class="demo-label">Typography</span>
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <p>This is a standard paragraph using the <code>--mu-text-muted</code> color. It is designed to be highly readable against the dark background while maintaining a professional hierarchy.</p>
+         </section>
+         <section>
+            <span class="demo-label">Colors</span>
+            <p class="text-muted margin-min">This text uses the <code>.text-muted</code> utility class.</p>
+            <p class="text-main margin-0">.text-main</p>
+            <p class="text-muted margin-0">.text-muted</p>
+            <p class="text-accent margin-0">.text-accent</p>
+         </section>
+         <section>
+            <span class="demo-label">Buttons</span>
+            <div class="flex gap-1 mobile-col">
+               <button class="btn">Primary Button</button>
+               <button class="btn btn-ghost">Ghost Button</button>
+            </div>
+         </section>
+         <section>
+            <span class="demo-label">Links</span>
+            <div class="flex gap-1 mobile-col">
+               <a href="#" class="link text-main">Primary Link</a>
+               <a href="#" class="link text-muted">Secondary Link</a>
+               <a href="#" class="link text-accent">Accent Link</a>
+               <a href="#" class="link-ghost">Ghost Link</a>
+            </div>
+         </section>
+         <section>
+            <span class="demo-label">Cards</span>
+            <div class="card">
+               <h3>Feature Card</h3>
+               <p>Cards use a subtle background and padding to group related information together efficiently.</p>
+            </div>
+         </section>
+         <section>
+            <span class="demo-label">Interactive Lists</span>
+            <div class="list-group">
+               <a href="#" class="list-item">
+                  <div>
+                     <h3>Project Alpha</h3>
+                     <p>Hover over me to see the accent gradient effect.</p>
+                  </div>
+                  <i class="fa-solid fa-arrow-right icon-arrow"></i>
+               </a>
+               <a href="#" class="list-item">
+                  <div>
+                     <h3>Project Beta</h3>
+                     <p>Clean layout for project showcases.</p>
+                  </div>
+                  <i class="fa-solid fa-arrow-right icon-arrow"></i>
+               </a>
+            </div>
+         </section>
+         <footer class="footer text-center text-muted">
+            © <script>document.write(new Date().getFullYear())</script> s17 Labs. <a href="https://github.com/s17labs/minimal-ui" target="_blank">
+            <i class="fa-brands fa-github"></i> Source Code
+            </a>
+         </footer>
+      </div>
+   </body>
+</html>
