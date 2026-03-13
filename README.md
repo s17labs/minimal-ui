@@ -26,7 +26,7 @@ Google Font - Aldrich:
 ```
 
 ## License
-This software is released under the terms of the MIT License. See the [LICENSE](https://github.com/s17labs/mimimal-ui/blob/main/LICENSE) for further information.
+This software is released under the terms of the MIT License. See the [LICENSE](https://github.com/s17labs/minimal-ui/blob/main/LICENSE) for further information.
 
 ---
 © 2026 [s17 Labs](https://s17labs.github.io)
