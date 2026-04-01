@@ -1,5 +1,6 @@
 /* =========================================
-   Minimal-UI - Minimal-UI is a minimalist CSS framework for rapid prototyping.
+   Minimal-UI v0.1.0
+   A minimalist CSS framework for rapid prototyping.
    https://github.com/s17labs/minimal-ui
    ========================================= */
 
@@ -7,22 +8,36 @@
    /* Color Palette */
    --mu-primary-bg: #0e0e10;
    --mu-accent: #ff4136;
+   --mu-accent-hover: #e8372d;
    --mu-text-main: #f1f1f1;
    --mu-text-muted: #868686;
    --mu-surface: #1a1a1c;
    --mu-surface-hover: rgba(255, 255, 255, 0.03);
+   --mu-surface-raised: #222224;
+   --mu-border: rgba(255, 255, 255, 0.08);
+   --mu-border-accent: rgba(255, 65, 54, 0.4);
 
    /* Typography */
    --mu-font-base: Verdana, sans-serif;
    --mu-font-heading: 'Aldrich', sans-serif;
-   /* Ensure Aldrich is imported in your HTML */
+   --mu-font-mono: 'Courier New', Courier, monospace;
 
    /* Layout */
    --mu-radius: 4px;
+   --mu-radius-lg: 8px;
    --mu-transition: 0.3s ease;
+
+   /* Spacing scale */
+   --mu-space-1: 0.5rem;
+   --mu-space-2: 1rem;
+   --mu-space-3: 1.5rem;
+   --mu-space-4: 2rem;
 }
 
-/* --- Base Reset --- */
+/* =========================================
+   BASE RESET
+   ========================================= */
+
 *, *::before, *::after {
    box-sizing: border-box;
 }
@@ -47,12 +62,16 @@ a {
    transition: var(--mu-transition);
 }
 
-/* --- Typography --- */
+/* =========================================
+   TYPOGRAPHY
+   ========================================= */
+
 h1, h2, h3, h4, h5, h6 {
    font-family: var(--mu-font-heading);
    margin-top: 0;
    margin-bottom: 1rem;
    line-height: 1.2;
+   color: var(--mu-text-main);
 }
 
 p {
@@ -61,12 +80,65 @@ p {
    color: var(--mu-text-muted);
 }
 
-.text-accent { color: var(--mu-accent); }
-.text-main { color: var(--mu-text-main); }
-.text-muted { color: var(--mu-text-muted); }
-.text-center { text-align: center; }
+code {
+   font-family: var(--mu-font-mono);
+   font-size: 0.875em;
+   background: var(--mu-surface);
+   color: var(--mu-accent);
+   padding: 0.15em 0.45em;
+   border-radius: var(--mu-radius);
+   border: 1px solid var(--mu-border);
+}
 
-/* --- Layout & Containers --- */
+/* Code Block */
+.code-block {
+   display: block;
+   font-family: var(--mu-font-mono);
+   font-size: 0.875rem;
+   background: var(--mu-surface);
+   color: var(--mu-text-main);
+   padding: 1.25rem 1.5rem;
+   border-radius: var(--mu-radius-lg);
+   border: 1px solid var(--mu-border);
+   overflow-x: auto;
+   white-space: pre;
+   line-height: 1.7;
+   margin-bottom: 1.5rem;
+}
+
+.code-block::-webkit-scrollbar {
+   height: 4px;
+}
+
+.code-block::-webkit-scrollbar-track {
+   background: transparent;
+}
+
+.code-block::-webkit-scrollbar-thumb {
+   background: var(--mu-border);
+   border-radius: 2px;
+}
+
+/* Text Utilities */
+.text-accent  { color: var(--mu-accent); }
+.text-main    { color: var(--mu-text-main); }
+.text-muted   { color: var(--mu-text-muted); }
+.text-center  { text-align: center; }
+.text-left    { text-align: left; }
+.text-right   { text-align: right; }
+.text-sm      { font-size: 0.875rem; }
+.text-lg      { font-size: 1.2rem; }
+.text-xl      { font-size: 1.5rem; }
+.text-bold    { font-weight: bold; }
+.font-heading { font-family: var(--mu-font-heading); }
+.font-mono    { font-family: var(--mu-font-mono); }
+.truncate     { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.uppercase    { text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* =========================================
+   LAYOUT & CONTAINERS
+   ========================================= */
+
 .container {
    width: 100%;
    max-width: 700px;
@@ -74,36 +146,109 @@ p {
    padding: 20px;
 }
 
-.flex { display: flex; }
-.flex-col { display: flex; flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between;}
-
-.gap-1 {
-   gap: 1rem;
+.container-sm {
+   width: 100%;
+   max-width: 480px;
+   margin: 0 auto;
+   padding: 20px;
 }
 
-.gap-2 {
-   gap: 2rem;
+.container-lg {
+   width: 100%;
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 20px;
 }
 
-/* --- Components --- */
+/* Flex */
+.flex            { display: flex; }
+.flex-col        { display: flex; flex-direction: column; }
+.items-center    { align-items: center; }
+.items-start     { align-items: flex-start; }
+.items-end       { align-items: flex-end; }
+.justify-center  { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-end     { justify-content: flex-end; }
+.flex-wrap       { flex-wrap: wrap; }
+.flex-1          { flex: 1; }
 
-/* Buttons */
+.gap-1 { gap: var(--mu-space-1); }
+.gap-2 { gap: var(--mu-space-2); }
+.gap-3 { gap: var(--mu-space-3); }
+.gap-4 { gap: var(--mu-space-4); }
+
+/* Grid */
+.grid-2 {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: var(--mu-space-2);
+}
+
+.grid-3 {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: var(--mu-space-2);
+}
+
+/* Spacing Utilities */
+.mt-1 { margin-top: var(--mu-space-1); }
+.mt-2 { margin-top: var(--mu-space-2); }
+.mt-3 { margin-top: var(--mu-space-3); }
+.mt-4 { margin-top: var(--mu-space-4); }
+
+.mb-1 { margin-bottom: var(--mu-space-1); }
+.mb-2 { margin-bottom: var(--mu-space-2); }
+.mb-3 { margin-bottom: var(--mu-space-3); }
+.mb-4 { margin-bottom: var(--mu-space-4); }
+
+.ml-auto { margin-left: auto; }
+.mr-auto { margin-right: auto; }
+
+.p-1 { padding: var(--mu-space-1); }
+.p-2 { padding: var(--mu-space-2); }
+.p-3 { padding: var(--mu-space-3); }
+.p-4 { padding: var(--mu-space-4); }
+
+/* Legacy margin helpers (keep for compat) */
+.margin-0   { margin: 0; }
+.margin-min { margin-bottom: 5px; }
+
+/* =========================================
+   SURFACES
+   ========================================= */
+
+.surface {
+   background: var(--mu-surface-hover);
+   border-radius: var(--mu-radius);
+   padding: var(--mu-space-3);
+}
+
+.surface-raised {
+   background: var(--mu-surface-raised);
+   border: 1px solid var(--mu-border);
+   border-radius: var(--mu-radius);
+   padding: var(--mu-space-3);
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
 .btn {
    display: inline-flex;
    align-items: center;
    justify-content: center;
    gap: 0.6rem;
-   font-size: 1.1rem;
+   font-size: 1rem;
    background: var(--mu-surface);
    border: 1px solid transparent;
    color: var(--mu-text-muted);
    cursor: pointer;
-   padding: 0.8rem 1.4rem;
+   padding: 0.75rem 1.4rem;
    border-radius: var(--mu-radius);
    font-family: inherit;
+   line-height: 1;
+   white-space: nowrap;
    transition: var(--mu-transition);
 }
 
@@ -112,32 +257,334 @@ p {
    color: var(--mu-text-main);
 }
 
+/* Accent — solid red fill */
+.btn-accent {
+   background: var(--mu-accent);
+   color: var(--mu-text-main);
+   border-color: transparent;
+}
+
+.btn-accent:hover {
+   background: var(--mu-accent-hover);
+   color: var(--mu-text-main);
+}
+
+/* Outline — border only */
+.btn-outline {
+   background: transparent;
+   border: 1px solid var(--mu-border-accent);
+   color: var(--mu-accent);
+}
+
+.btn-outline:hover {
+   background: var(--mu-accent);
+   color: var(--mu-text-main);
+   border-color: transparent;
+}
+
+/* Ghost — no background */
 .btn-ghost {
    background: transparent;
+   border-color: transparent;
    padding: 0.5rem 1rem;
 }
+
 .btn-ghost:hover {
    color: var(--mu-accent);
    background: transparent;
 }
 
-/* Links */
-.link:hover, .link:active {
+/* Muted — subdued secondary action */
+.btn-muted {
+   background: transparent;
+   border: 1px solid var(--mu-border);
+   color: var(--mu-text-muted);
+}
+
+.btn-muted:hover {
+   border-color: var(--mu-text-muted);
+   color: var(--mu-text-main);
+   background: transparent;
+}
+
+/* Sizes */
+.btn-sm {
+   font-size: 0.8rem;
+   padding: 0.45rem 0.9rem;
+   gap: 0.4rem;
+}
+
+.btn-lg {
+   font-size: 1.15rem;
+   padding: 1rem 2rem;
+   gap: 0.75rem;
+}
+
+/* Icon-only square button */
+.btn-icon {
+   padding: 0.75rem;
+   aspect-ratio: 1 / 1;
+}
+
+.btn-sm.btn-icon {
+   padding: 0.45rem;
+}
+
+/* Disabled state */
+.btn:disabled,
+.btn[disabled] {
+   opacity: 0.4;
+   cursor: not-allowed;
+   pointer-events: none;
+}
+
+/* =========================================
+   LINKS
+   ========================================= */
+
+.link:hover,
+.link:active {
    color: var(--mu-accent);
    text-decoration: underline;
 }
 
-.link-ghost:hover, .link-ghost:active {
+.link-ghost:hover,
+.link-ghost:active {
    text-decoration: underline;
 }
 
-/* Cards & Surfaces */
+.link-accent {
+   color: var(--mu-accent);
+}
+
+.link-accent:hover {
+   text-decoration: underline;
+   opacity: 0.8;
+}
+
+/* =========================================
+   FORMS
+   ========================================= */
+
+.form-group {
+   display: flex;
+   flex-direction: column;
+   gap: 0.4rem;
+   margin-bottom: var(--mu-space-2);
+}
+
+label,
+.label {
+   font-size: 0.875rem;
+   color: var(--mu-text-muted);
+   font-family: var(--mu-font-base);
+   letter-spacing: 0.02em;
+}
+
+.input,
+.textarea,
+.select,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+   width: 100%;
+   background: var(--mu-surface);
+   border: 1px solid var(--mu-border);
+   color: var(--mu-text-main);
+   font-family: var(--mu-font-base);
+   font-size: 1rem;
+   padding: 0.7rem 1rem;
+   border-radius: var(--mu-radius);
+   outline: none;
+   transition: border-color var(--mu-transition);
+   appearance: none;
+   -webkit-appearance: none;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+   border-color: var(--mu-accent);
+}
+
+.input::placeholder,
+textarea::placeholder {
+   color: var(--mu-text-muted);
+   opacity: 0.6;
+}
+
+textarea {
+   resize: vertical;
+   min-height: 100px;
+   line-height: 1.6;
+}
+
+select {
+   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23868686' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+   background-repeat: no-repeat;
+   background-position: right 1rem center;
+   padding-right: 2.5rem;
+   cursor: pointer;
+}
+
+select option {
+   background: var(--mu-surface);
+   color: var(--mu-text-main);
+}
+
+/* Input + button row */
+.input-group {
+   display: flex;
+   gap: 0;
+}
+
+.input-group .input,
+.input-group input {
+   border-radius: var(--mu-radius) 0 0 var(--mu-radius);
+   flex: 1;
+}
+
+.input-group .btn {
+   border-radius: 0 var(--mu-radius) var(--mu-radius) 0;
+   flex-shrink: 0;
+}
+
+/* Checkbox & Radio */
+.checkbox-group,
+.radio-group {
+   display: flex;
+   align-items: center;
+   gap: 0.6rem;
+   cursor: pointer;
+   color: var(--mu-text-muted);
+   font-size: 0.95rem;
+   user-select: none;
+}
+
+.checkbox-group input[type="checkbox"],
+.radio-group input[type="radio"] {
+   width: 1rem;
+   height: 1rem;
+   accent-color: var(--mu-accent);
+   cursor: pointer;
+   flex-shrink: 0;
+}
+
+/* =========================================
+   BADGES
+   ========================================= */
+
+.badge {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.3rem;
+   font-size: 0.75rem;
+   font-family: var(--mu-font-base);
+   padding: 0.25em 0.65em;
+   border-radius: 100px;
+   background: var(--mu-surface);
+   color: var(--mu-text-muted);
+   border: 1px solid var(--mu-border);
+   white-space: nowrap;
+   line-height: 1.4;
+}
+
+.badge-accent {
+   background: rgba(255, 65, 54, 0.15);
+   color: var(--mu-accent);
+   border-color: var(--mu-border-accent);
+}
+
+.badge-muted {
+   background: transparent;
+   color: var(--mu-text-muted);
+   border-color: var(--mu-border);
+}
+
+.badge-outline {
+   background: transparent;
+   color: var(--mu-text-main);
+   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.badge-dot::before {
+   content: '';
+   display: inline-block;
+   width: 0.45em;
+   height: 0.45em;
+   border-radius: 50%;
+   background: currentColor;
+}
+
+/* =========================================
+   ALERTS
+   ========================================= */
+
+.alert {
+   display: flex;
+   align-items: flex-start;
+   gap: 0.75rem;
+   padding: 1rem 1.25rem;
+   border-radius: var(--mu-radius-lg);
+   border: 1px solid var(--mu-border);
+   background: var(--mu-surface);
+   color: var(--mu-text-muted);
+   font-size: 0.95rem;
+   line-height: 1.5;
+   margin-bottom: var(--mu-space-2);
+}
+
+.alert-accent {
+   background: rgba(255, 65, 54, 0.08);
+   border-color: var(--mu-border-accent);
+   color: var(--mu-text-main);
+}
+
+.alert-title {
+   font-family: var(--mu-font-base);
+   font-weight: bold;
+   color: var(--mu-text-main);
+   margin-bottom: 0.2rem;
+   font-size: 0.95rem;
+}
+
+.alert-icon {
+   flex-shrink: 0;
+   margin-top: 0.1em;
+   color: var(--mu-text-muted);
+}
+
+.alert-accent .alert-icon {
+   color: var(--mu-accent);
+}
+
+/* =========================================
+   CARDS & SURFACES
+   ========================================= */
+
 .card {
    background: var(--mu-surface-hover);
-   border-radius: var(--mu-radius);
+   border-radius: var(--mu-radius-lg);
    padding: 1.5rem;
    transition: var(--mu-transition);
 }
+
+/* =========================================
+   FOOTER
+   ========================================= */
 
 .footer {
    width: 100%;
@@ -146,14 +593,19 @@ p {
    font-size: 0.95rem;
    text-align: center;
    margin-top: auto;
+   color: var(--mu-text-muted);
 }
 
-.footer a:hover, .footer a:active {
+.footer a:hover,
+.footer a:active {
    color: var(--mu-accent);
    text-decoration: underline;
 }
 
-/* Interactive List Items (from your projects list) */
+/* =========================================
+   INTERACTIVE LIST ITEMS
+   ========================================= */
+
 .list-group {
    display: flex;
    flex-direction: column;
@@ -198,26 +650,52 @@ p {
    transform: translateX(4px);
 }
 
-/* The s17 Cube Logo Element */
+/* =========================================
+   DIVIDERS
+   ========================================= */
+
+.divider {
+   border: 0;
+   border-top: 1px solid var(--mu-border);
+   margin: var(--mu-space-3) 0;
+}
+
+.divider-label {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+   margin: var(--mu-space-3) 0;
+   color: var(--mu-text-muted);
+   font-size: 0.8rem;
+   text-transform: uppercase;
+   letter-spacing: 0.1em;
+}
+
+.divider-label::before,
+.divider-label::after {
+   content: '';
+   flex: 1;
+   border-top: 1px solid var(--mu-border);
+}
+
+/* =========================================
+   BRAND CUBE
+   ========================================= */
+
+/* FIX: corrected translateY direction to match the s17 website */
 .brand-cube {
    display: inline-block;
    width: 0.85em;
    height: 0.85em;
    background-color: var(--mu-accent);
-   /* If it doesn't fit adjust this property*/
-   transform: translateY(0.1em);
+   transform: translateY(-0.1em);
    margin-right: 0.2em;
 }
 
-/* Margin utility classes */
-.margin-0 {
-   margin: 0;
-}
-.margin-min {
-   margin-bottom: 5px;
-}
+/* =========================================
+   ANIMATIONS
+   ========================================= */
 
-/* --- Utilities --- */
 .fade-in {
    animation: fadeIn 0.4s ease-out forwards;
 }
@@ -227,20 +705,42 @@ p {
       opacity: 0;
       transform: translateY(10px);
    }
-
    to {
       opacity: 1;
       transform: translateY(0);
    }
 }
 
-/* Mobile Responsiveness */
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+
 @media (max-width: 580px) {
-   .btn {
+   /* Buttons only go full-width when inside .mobile-col */
+   .mobile-col .btn {
       width: 100%;
    }
 
    .mobile-col {
       flex-direction: column;
+   }
+
+   .grid-2,
+   .grid-3 {
+      grid-template-columns: 1fr;
+   }
+
+   .input-group {
+      flex-direction: column;
+   }
+
+   .input-group .input,
+   .input-group input {
+      border-radius: var(--mu-radius);
+   }
+
+   .input-group .btn {
+      border-radius: var(--mu-radius);
+      width: 100%;
    }
 }

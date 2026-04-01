@@ -4,96 +4,321 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Minimal-UI | s17 Labs</title>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/s17labs/minimal-ui@v0.0.1/minimal-ui.css">
+      <link rel="stylesheet" href="minimal-ui.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
       <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
       <style>
          section {
-           margin-bottom: 4rem;
+            margin-bottom: 4rem;
          }
          .demo-label {
-           font-size: 0.8rem;
-           text-transform: uppercase;
-           letter-spacing: 0.1em;
-           color: var(--mu-accent);
-           margin-bottom: 1rem;
-           display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--mu-accent);
+            margin-bottom: 1rem;
+            display: block;
+            font-family: var(--mu-font-heading);
+         }
+         .demo-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+         }
+         .version-badge {
+            font-size: 0.7rem;
+            background: var(--mu-surface);
+            color: var(--mu-text-muted);
+            padding: 0.2em 0.6em;
+            border-radius: 100px;
+            border: 1px solid var(--mu-border);
+            vertical-align: middle;
+            margin-left: 0.5rem;
          }
       </style>
    </head>
    <body>
       <div class="container fade-in">
+
+         <!-- ── HEADER ── -->
          <header class="text-center" style="margin: 4rem 0;">
-            <h1><span class="brand-cube"></span> Minimal-UI</h1>
-            <p>Minimalist CSS framework for rapid prototyping by <b><a href="https://s17labs.github.io">s17 Labs</a></b>.</p>
-            <div class="flex justify-center gap-1" style="margin-top: 2rem;">
-               <a href="https://github.com/s17labs/minimal-ui" class="btn">
-               <i class="fa-brands fa-github"></i>View Source
+            <h1><span class="brand-cube"></span> Minimal-UI <span class="version-badge">v0.1.0</span></h1>
+            <p>Minimalist CSS framework for rapid prototyping by <b><a href="https://s17labs.github.io" class="link text-main">s17 Labs</a></b>.</p>
+            <div class="flex justify-center gap-1 mt-3 mobile-col">
+               <a href="https://github.com/s17labs/minimal-ui" class="btn" target="_blank">
+                  <i class="fa-brands fa-github"></i> View Source
+               </a>
+               <a href="https://s17labs.github.io" class="btn btn-muted" target="_blank">
+                  s17 Labs
                </a>
             </div>
          </header>
-         <hr style="border: 0; border-top: 1px solid var(--mu-surface); margin: 3rem 0;">
+
+         <hr class="divider">
+
+         <!-- ── TYPOGRAPHY ── -->
          <section>
             <span class="demo-label">Typography</span>
-            <h1>Heading 1</h1>
-            <h2>Heading 2</h2>
+            <h1>Heading 1 <span class="text-muted text-lg font-heading">/ h1</span></h1>
+            <h2>Heading 2 <span class="text-muted font-heading" style="font-size:1rem">/ h2</span></h2>
             <h3>Heading 3</h3>
-            <p>This is a standard paragraph using the <code>--mu-text-muted</code> color. It is designed to be highly readable against the dark background while maintaining a professional hierarchy.</p>
+            <p>Standard paragraph — <code>--mu-text-muted</code> color. Highly readable against dark backgrounds while maintaining a clean typographic hierarchy.</p>
+            <div class="demo-row">
+               <span class="text-main">.text-main</span>
+               <span class="text-muted">.text-muted</span>
+               <span class="text-accent">.text-accent</span>
+               <span class="text-sm text-muted">.text-sm</span>
+               <span class="text-lg">.text-lg</span>
+               <span class="text-bold">.text-bold</span>
+               <span class="uppercase text-muted">.uppercase</span>
+               <code class="font-mono">.font-mono</code>
+            </div>
          </section>
-         <section>
-            <span class="demo-label">Colors</span>
-            <p class="text-muted margin-min">This text uses the <code>.text-muted</code> utility class.</p>
-            <p class="text-main margin-0">.text-main</p>
-            <p class="text-muted margin-0">.text-muted</p>
-            <p class="text-accent margin-0">.text-accent</p>
-         </section>
+
+         <!-- ── BUTTONS ── -->
          <section>
             <span class="demo-label">Buttons</span>
-            <div class="flex gap-1 mobile-col">
-               <button class="btn">Primary Button</button>
-               <button class="btn btn-ghost">Ghost Button</button>
+            <p class="text-sm text-muted mb-2">All variants and sizes, composable with each other.</p>
+
+            <p class="text-sm text-muted margin-min">Variants</p>
+            <div class="demo-row mb-3">
+               <button class="btn"><i class="fa-solid fa-cube"></i> Default</button>
+               <button class="btn btn-accent"><i class="fa-solid fa-bolt"></i> Accent</button>
+               <button class="btn btn-outline">Outline</button>
+               <button class="btn btn-muted">Muted</button>
+               <button class="btn btn-ghost">Ghost</button>
+               <button class="btn" disabled>Disabled</button>
+            </div>
+
+            <p class="text-sm text-muted margin-min">Sizes</p>
+            <div class="demo-row mb-3">
+               <button class="btn btn-sm">Small</button>
+               <button class="btn">Default</button>
+               <button class="btn btn-lg">Large</button>
+            </div>
+
+            <p class="text-sm text-muted margin-min">Icon Buttons</p>
+            <div class="demo-row mb-3">
+               <button class="btn btn-icon btn-sm"><i class="fa-solid fa-xmark"></i></button>
+               <button class="btn btn-icon"><i class="fa-solid fa-arrow-right"></i></button>
+               <button class="btn btn-icon btn-accent"><i class="fa-solid fa-plus"></i></button>
+               <button class="btn btn-icon btn-outline"><i class="fa-brands fa-github"></i></button>
+            </div>
+
+            <p class="text-sm text-muted margin-min">Full width (use inside <code>.mobile-col</code>)</p>
+            <div class="flex mobile-col gap-1" style="max-width: 400px;">
+               <button class="btn btn-accent flex-1"><i class="fa-solid fa-bolt"></i> Primary Action</button>
+               <button class="btn flex-1">Secondary</button>
             </div>
          </section>
+
+         <!-- ── LINKS ── -->
          <section>
             <span class="demo-label">Links</span>
-            <div class="flex gap-1 mobile-col">
-               <a href="#" class="link text-main">Primary Link</a>
-               <a href="#" class="link text-muted">Secondary Link</a>
-               <a href="#" class="link text-accent">Accent Link</a>
-               <a href="#" class="link-ghost">Ghost Link</a>
+            <div class="demo-row">
+               <a href="#" class="link text-main">Default Link</a>
+               <a href="#" class="link text-muted">Muted Link</a>
+               <a href="#" class="link text-accent link-accent">Accent Link</a>
+               <a href="#" class="link-ghost text-muted">Ghost Link</a>
             </div>
          </section>
+
+         <hr class="divider">
+
+         <!-- ── FORMS ── -->
+         <section>
+            <span class="demo-label">Forms</span>
+            <div class="grid-2 mb-3">
+               <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="input" placeholder="Sam">
+               </div>
+               <div class="form-group">
+                  <label>Last Name</label>
+                  <input type="text" class="input" placeholder="Aldridge">
+               </div>
+            </div>
+            <div class="form-group mb-3">
+               <label>Email</label>
+               <input type="email" class="input" placeholder="sam@s17labs.com">
+            </div>
+            <div class="form-group mb-3">
+               <label>Framework</label>
+               <select class="select">
+                  <option value="" disabled selected>Select one...</option>
+                  <option>Minimal-UI</option>
+                  <option>Vanilla CSS</option>
+                  <option>Tailwind</option>
+               </select>
+            </div>
+            <div class="form-group mb-3">
+               <label>Message</label>
+               <textarea class="textarea" placeholder="Write something..."></textarea>
+            </div>
+            <div class="form-group mb-3">
+               <p class="text-sm text-muted margin-min">Input Group</p>
+               <div class="input-group">
+                  <input type="email" class="input" placeholder="Enter your email">
+                  <button class="btn btn-accent">Subscribe</button>
+               </div>
+            </div>
+            <div class="demo-row">
+               <label class="checkbox-group">
+                  <input type="checkbox" checked> Accept terms
+               </label>
+               <label class="checkbox-group">
+                  <input type="checkbox"> Marketing emails
+               </label>
+               <label class="radio-group">
+                  <input type="radio" name="demo" checked> Option A
+               </label>
+               <label class="radio-group">
+                  <input type="radio" name="demo"> Option B
+               </label>
+            </div>
+         </section>
+
+         <hr class="divider">
+
+         <!-- ── BADGES ── -->
+         <section>
+            <span class="demo-label">Badges</span>
+            <div class="demo-row">
+               <span class="badge">Default</span>
+               <span class="badge badge-accent">Accent</span>
+               <span class="badge badge-muted">Muted</span>
+               <span class="badge badge-outline">Outline</span>
+               <span class="badge badge-accent badge-dot">Live</span>
+               <span class="badge badge-muted badge-dot">Draft</span>
+               <span class="badge"><i class="fa-brands fa-github" style="font-size:0.7rem"></i> GitHub</span>
+            </div>
+         </section>
+
+         <!-- ── ALERTS ── -->
+         <section>
+            <span class="demo-label">Alerts</span>
+            <div class="alert">
+               <i class="fa-solid fa-circle-info alert-icon"></i>
+               <div>
+                  <p class="alert-title">Heads up</p>
+                  Default alert for neutral notices and informational messages.
+               </div>
+            </div>
+            <div class="alert alert-accent">
+               <i class="fa-solid fa-triangle-exclamation alert-icon"></i>
+               <div>
+                  <p class="alert-title">Action required</p>
+                  Accent alert for important messages that require user attention.
+               </div>
+            </div>
+         </section>
+
+         <hr class="divider">
+
+         <!-- ── CODE ── -->
+         <section>
+            <span class="demo-label">Code</span>
+            <p>Use <code>.btn-accent</code> for primary actions and <code>.btn-outline</code> for secondary CTAs.</p>
+            <pre class="code-block">/* Import Minimal-UI */
+@import url('minimal-ui.css');
+
+/* Use components */
+&lt;button class="btn btn-accent"&gt;
+   Click me
+&lt;/button&gt;</pre>
+         </section>
+
+         <!-- ── DIVIDERS ── -->
+         <section>
+            <span class="demo-label">Dividers</span>
+            <p class="text-muted text-sm">Standard divider below:</p>
+            <hr class="divider">
+            <p class="text-muted text-sm">Labelled divider:</p>
+            <div class="divider-label">or continue with</div>
+            <div class="demo-row mt-2">
+               <button class="btn btn-muted flex-1"><i class="fa-brands fa-github"></i> GitHub</button>
+               <button class="btn btn-muted flex-1"><i class="fa-brands fa-google"></i> Google</button>
+            </div>
+         </section>
+
+         <hr class="divider">
+
+         <!-- ── GRID ── -->
+         <section>
+            <span class="demo-label">Grid</span>
+            <p class="text-sm text-muted margin-min">.grid-2</p>
+            <div class="grid-2 mb-3">
+               <div class="surface-raised text-center p-2 text-muted text-sm">Col 1</div>
+               <div class="surface-raised text-center p-2 text-muted text-sm">Col 2</div>
+            </div>
+            <p class="text-sm text-muted margin-min">.grid-3</p>
+            <div class="grid-3">
+               <div class="surface-raised text-center p-2 text-muted text-sm">Col 1</div>
+               <div class="surface-raised text-center p-2 text-muted text-sm">Col 2</div>
+               <div class="surface-raised text-center p-2 text-muted text-sm">Col 3</div>
+            </div>
+         </section>
+
+         <!-- ── SURFACES ── -->
+         <section>
+            <span class="demo-label">Surfaces</span>
+            <div class="grid-2">
+               <div class="surface">
+                  <p class="text-sm text-muted margin-min">.surface</p>
+                  <p class="margin-0 text-sm">Subtle transparent fill, no border.</p>
+               </div>
+               <div class="surface-raised">
+                  <p class="text-sm text-muted margin-min">.surface-raised</p>
+                  <p class="margin-0 text-sm">Elevated with border — good for cards.</p>
+               </div>
+            </div>
+         </section>
+
+         <hr class="divider">
+
+         <!-- ── CARDS ── -->
          <section>
             <span class="demo-label">Cards</span>
             <div class="card">
                <h3>Feature Card</h3>
-               <p>Cards use a subtle background and padding to group related information together efficiently.</p>
+               <p>Cards use a subtle background to group related content. Combine with badges, buttons, and grid for layout blocks.</p>
+               <div class="demo-row">
+                  <span class="badge badge-accent">New</span>
+                  <span class="badge">v0.1.0</span>
+               </div>
             </div>
          </section>
+
+         <!-- ── INTERACTIVE LISTS ── -->
          <section>
             <span class="demo-label">Interactive Lists</span>
             <div class="list-group">
                <a href="#" class="list-item">
                   <div>
-                     <h3>Project Alpha</h3>
-                     <p>Hover over me to see the accent gradient effect.</p>
+                     <h3>Project Alpha <span class="badge badge-accent" style="vertical-align:middle;font-size:0.65rem;">Live</span></h3>
+                     <p>Hover to see the accent gradient slide-in effect.</p>
                   </div>
                   <i class="fa-solid fa-arrow-right icon-arrow"></i>
                </a>
                <a href="#" class="list-item">
                   <div>
                      <h3>Project Beta</h3>
-                     <p>Clean layout for project showcases.</p>
+                     <p>Composable with badges, text utilities, and more.</p>
                   </div>
                   <i class="fa-solid fa-arrow-right icon-arrow"></i>
                </a>
             </div>
          </section>
+
+         <!-- ── FOOTER ── -->
          <footer class="footer text-center text-muted">
-            © <script>document.write(new Date().getFullYear())</script> s17 Labs. <a href="https://github.com/s17labs/minimal-ui" target="_blank">
-            <i class="fa-brands fa-github"></i> Source Code
+            © <script>document.write(new Date().getFullYear())</script> s17 Labs.
+            <a href="https://github.com/s17labs/minimal-ui" target="_blank" class="link text-muted">
+               <i class="fa-brands fa-github"></i> Source Code
             </a>
          </footer>
+
       </div>
    </body>
 </html>
