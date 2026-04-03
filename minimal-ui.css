@@ -1,5 +1,5 @@
 /* =========================================
-   Minimal-UI v0.1.0
+   Minimal-UI v0.2.0
    A minimalist CSS framework for rapid prototyping.
    https://github.com/s17labs/minimal-ui
    ========================================= */
@@ -682,14 +682,40 @@ select option {
    BRAND CUBE
    ========================================= */
 
-/* FIX: corrected translateY direction to match the s17 website */
+/*
+ * The s17 Labs red square icon. Scales with parent font-size via em units.
+ *
+ * USAGE — pick one:
+ *
+ * 1. CDN (no file needed — recommended for external projects):
+ *    <img class="brand-cube"
+ *         src="https://cdn.jsdelivr.net/gh/s17labs/minimal-ui@latest/s17-icon.svg"
+ *         alt="s17 Labs">
+ *
+ * 2. Local file (copy s17-icon.svg into your project):
+ *    <img class="brand-cube" src="s17-icon.svg" alt="s17 Labs">
+ *
+ * 3. CSS-only fallback (no SVG file at all — renders a plain red square):
+ *    <span class="brand-cube"></span>
+ */
 .brand-cube {
    display: inline-block;
    width: 0.85em;
    height: 0.85em;
+   vertical-align: baseline;
+   position: relative;
+   top: 0.08em;          /* pushes bottom edge past the baseline — the "sticking out" effect */
+   margin-right: 0.22em;
+   flex-shrink: 0;
+
+   /* CSS fallback — only visible when used as a <span> */
    background-color: var(--mu-accent);
-   transform: translateY(-0.1em);
-   margin-right: 0.2em;
+}
+
+/* When used as <img>, strip the CSS background so only the SVG renders */
+img.brand-cube {
+   background-color: transparent;
+   object-fit: contain;
 }
 
 /* =========================================
