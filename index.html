@@ -164,18 +164,43 @@
                   <button class="btn btn-accent">Subscribe</button>
                </div>
             </div>
+
+            <p class="text-sm text-muted margin-min">Checkboxes</p>
+            <div class="demo-row mb-2">
+               <label class="checkbox-group">
+                  <input type="checkbox" checked><span>Accept terms</span>
+               </label>
+               <label class="checkbox-group">
+                  <input type="checkbox"><span>Marketing emails</span>
+               </label>
+               <label class="checkbox-group">
+                  <input type="checkbox" disabled><span>Disabled</span>
+               </label>
+            </div>
+
+            <p class="text-sm text-muted margin-min">Radios</p>
+            <div class="demo-row mb-2">
+               <label class="radio-group">
+                  <input type="radio" name="demo" checked><span>Option A</span>
+               </label>
+               <label class="radio-group">
+                  <input type="radio" name="demo"><span>Option B</span>
+               </label>
+               <label class="radio-group">
+                  <input type="radio" name="demo" disabled><span>Disabled</span>
+               </label>
+            </div>
+
+            <p class="text-sm text-muted margin-min">Toggles</p>
             <div class="demo-row">
-               <label class="checkbox-group">
-                  <input type="checkbox" checked> Accept terms
+               <label class="toggle">
+                  <input type="checkbox" checked><span>Enabled</span>
                </label>
-               <label class="checkbox-group">
-                  <input type="checkbox"> Marketing emails
+               <label class="toggle">
+                  <input type="checkbox"><span>Off</span>
                </label>
-               <label class="radio-group">
-                  <input type="radio" name="demo" checked> Option A
-               </label>
-               <label class="radio-group">
-                  <input type="radio" name="demo"> Option B
+               <label class="toggle">
+                  <input type="checkbox" disabled><span>Disabled</span>
                </label>
             </div>
          </section>
@@ -312,14 +337,91 @@
             </div>
          </section>
 
-         <!-- ── FOOTER ── -->
-         <footer class="footer text-center text-muted">
-            © <script>document.write(new Date().getFullYear())</script> s17 Labs.
-            <a href="https://github.com/s17labs/minimal-ui" target="_blank" class="link text-muted">
-               <i class="fa-brands fa-github"></i> Source Code
-            </a>
-         </footer>
+         <hr class="divider">
+
+         <!-- ── FOOTERS ── -->
+         <section>
+            <span class="demo-label">Footer Variants</span>
+
+            <!-- Minimal -->
+            <p class="text-sm text-muted margin-min">.footer.footer-minimal</p>
+            <footer class="footer footer-minimal" style="margin-bottom: 2rem;">
+               © <script>document.write(new Date().getFullYear())</script> s17 Labs.
+               <a href="#">GitHub</a> · <a href="#">Docs</a>
+            </footer>
+
+            <!-- Solid -->
+            <p class="text-sm text-muted margin-min">.footer.footer-solid</p>
+            <footer class="footer footer-solid" style="margin-bottom: 2rem; border-radius: var(--mu-radius);">
+               <div class="footer-cols">
+                  <div class="footer-col">
+                     <a href="#" class="footer-logo">
+                        <img class="brand-cube" src="s17-icon.svg" alt="s17 Labs"> s17 Labs.
+                     </a>
+                     <p style="margin:0; font-size:0.85rem;">Building efficient, lightweight software for the modern web.</p>
+                  </div>
+                  <div class="footer-col">
+                     <span class="footer-col-title">Projects</span>
+                     <ul class="footer-links" style="flex-direction:column;">
+                        <li><a href="#">Minimal-UI</a></li>
+                        <li><a href="#">Notes</a></li>
+                        <li><a href="#">Tools</a></li>
+                     </ul>
+                  </div>
+                  <div class="footer-col">
+                     <span class="footer-col-title">Links</span>
+                     <ul class="footer-links" style="flex-direction:column;">
+                        <li><a href="#"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                        <li><a href="#">Documentation</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <hr class="footer-divider">
+               <p class="footer-copy">© <script>document.write(new Date().getFullYear())</script> s17 Labs. All rights reserved.</p>
+            </footer>
+
+            <!-- Gradient -->
+            <p class="text-sm text-muted margin-min">.footer.footer-gradient</p>
+            <footer class="footer footer-gradient" style="margin-bottom: 2rem; border-radius: var(--mu-radius);">
+               <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
+                  <a href="#" class="footer-logo">
+                     <img class="brand-cube" src="s17-icon.svg" alt="s17 Labs"> s17 Labs.
+                  </a>
+                  <ul class="footer-links">
+                     <li><a href="#">GitHub</a></li>
+                     <li><a href="#">Docs</a></li>
+                     <li><a href="#">Projects</a></li>
+                  </ul>
+               </div>
+               <hr class="footer-divider">
+               <p class="footer-copy">© <script>document.write(new Date().getFullYear())</script> s17 Labs.</p>
+            </footer>
+
+            <!-- Flush -->
+            <p class="text-sm text-muted margin-min">.footer.footer-flush</p>
+            <footer class="footer footer-flush" style="padding: 1rem 0 0;">
+               © <script>document.write(new Date().getFullYear())</script> s17 Labs · <a href="#">Source Code</a>
+            </footer>
+         </section>
 
       </div>
+
+      <!-- ── ACTUAL PAGE FOOTER ── -->
+      <footer class="footer footer-gradient">
+         <div class="container">
+            <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
+               <a href="https://s17labs.github.io" class="footer-logo">
+                  <img class="brand-cube" src="s17-icon.svg" alt="s17 Labs"> s17 Labs.
+               </a>
+               <ul class="footer-links">
+                  <li><a href="https://github.com/s17labs/minimal-ui" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                  <li><a href="https://s17labs.github.io" target="_blank"><i class="fa-solid fa-arrow-pointer"></i> Website</a></li>
+               </ul>
+            </div>
+            <hr class="footer-divider">
+            <p class="footer-copy">© <script>document.write(new Date().getFullYear())</script> s17 Labs. Minimal-UI is open source.</p>
+         </div>
+      </footer>
+
    </body>
 </html>

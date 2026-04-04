@@ -62,6 +62,12 @@ a {
    transition: var(--mu-transition);
 }
 
+/* Remove default blue tap highlight on mobile for all interactive elements */
+a, button, input, select, textarea, label,
+[role="button"], [tabindex] {
+   -webkit-tap-highlight-color: transparent;
+}
+
 /* =========================================
    TYPOGRAPHY
    ========================================= */
@@ -234,6 +240,22 @@ code {
    BUTTONS
    ========================================= */
 
+/*
+ * Normalize <a> and <button> so both render identically with .btn.
+ * Without this, browser UA styles cause size/spacing differences.
+ */
+a.btn {
+   display: inline-flex;
+   text-decoration: none;
+   -webkit-appearance: none;
+}
+
+button.btn {
+   -webkit-appearance: none;
+   appearance: none;
+   margin: 0;
+}
+
 .btn {
    display: inline-flex;
    align-items: center;
@@ -249,6 +271,7 @@ code {
    font-family: inherit;
    line-height: 1;
    white-space: nowrap;
+   box-sizing: border-box;
    transition: var(--mu-transition);
 }
 
@@ -462,26 +485,196 @@ select option {
    flex-shrink: 0;
 }
 
-/* Checkbox & Radio */
+/* =========================================
+   CHECKBOXES, RADIOS & TOGGLE
+   ========================================= */
+
+/*
+ * All three hide the native input and replace it with a
+ * fully custom ::before / ::after pseudo-element control.
+ *
+ * Usage:
+ *   <label class="checkbox-group">
+ *     <input type="checkbox"><span>Label</span>
+ *   </label>
+ *
+ *   <label class="radio-group">
+ *     <input type="radio" name="g"><span>Label</span>
+ *   </label>
+ *
+ *   <label class="toggle">
+ *     <input type="checkbox"><span>Label</span>
+ *   </label>
+ *
+ *   Add disabled attribute to <input> for disabled state.
+ */
+
+/* --- Shared label wrapper --- */
 .checkbox-group,
-.radio-group {
-   display: flex;
+.radio-group,
+.toggle {
+   display: inline-flex;
    align-items: center;
-   gap: 0.6rem;
+   gap: 0.65rem;
    cursor: pointer;
    color: var(--mu-text-muted);
    font-size: 0.95rem;
+   font-family: var(--mu-font-base);
    user-select: none;
+   position: relative;
+   transition: color var(--mu-transition);
 }
 
-.checkbox-group input[type="checkbox"],
-.radio-group input[type="radio"] {
-   width: 1rem;
-   height: 1rem;
-   accent-color: var(--mu-accent);
-   cursor: pointer;
-   flex-shrink: 0;
+.checkbox-group:hover,
+.radio-group:hover,
+.toggle:hover {
+   color: var(--mu-text-main);
 }
+
+/* Hide all native inputs */
+.checkbox-group input[type="checkbox"],
+.radio-group input[type="radio"],
+.toggle input[type="checkbox"] {
+   position: absolute;
+   opacity: 0;
+   width: 0;
+   height: 0;
+   pointer-events: none;
+}
+
+/* --- Disabled state (all three) --- */
+.checkbox-group:has(input:disabled),
+.radio-group:has(input:disabled),
+.toggle:has(input:disabled) {
+   opacity: 0.35;
+   cursor: not-allowed;
+   pointer-events: none;
+}
+
+/* --- Checkbox --- */
+
+/* The box */
+.checkbox-group::before {
+   content: '';
+   display: block;
+   flex-shrink: 0;
+   width: 1.1em;
+   height: 1.1em;
+   border: 1.5px solid var(--mu-border);
+   border-radius: 3px;
+   background: transparent center / 65% no-repeat;
+   transition: background var(--mu-transition), border-color var(--mu-transition);
+}
+
+.checkbox-group:hover::before {
+   border-color: var(--mu-text-muted);
+}
+
+/* Checked — red fill + SVG checkmark centered via background-image */
+.checkbox-group:has(input:checked)::before {
+   background-color: var(--mu-accent);
+   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.5l2.8 2.8 5-5.5' stroke='%23ffffff' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+   border-color: var(--mu-accent);
+}
+
+.checkbox-group:has(input:checked) {
+   color: var(--mu-text-main);
+}
+
+/* --- Radio --- */
+
+/* The circle */
+.radio-group::before {
+   content: '';
+   display: block;
+   flex-shrink: 0;
+   width: 1.1em;
+   height: 1.1em;
+   border: 1.5px solid var(--mu-border);
+   border-radius: 50%;
+   background: transparent;
+   transition: border-color var(--mu-transition);
+}
+
+/* The inner dot */
+.radio-group::after {
+   content: '';
+   position: absolute;
+   left: 0.3em;
+   top: 50%;
+   width: 0.5em;
+   height: 0.5em;
+   border-radius: 50%;
+   background: var(--mu-accent);
+   transform: translateY(-50%) scale(0);
+   transition: transform var(--mu-transition);
+   pointer-events: none;
+}
+
+.radio-group:hover::before {
+   border-color: var(--mu-text-muted);
+}
+
+.radio-group:has(input:checked)::before {
+   border-color: var(--mu-accent);
+}
+
+.radio-group:has(input:checked)::after {
+   transform: translateY(-50%) scale(1);
+}
+
+.radio-group:has(input:checked) {
+   color: var(--mu-text-main);
+}
+
+/* --- Toggle / Switch --- */
+
+/* The track */
+.toggle::before {
+   content: '';
+   display: block;
+   flex-shrink: 0;
+   width: 2.4em;
+   height: 1.3em;
+   border-radius: 100px;
+   background: var(--mu-surface);
+   border: 1.5px solid var(--mu-border);
+   transition: background var(--mu-transition), border-color var(--mu-transition);
+}
+
+/* The thumb */
+.toggle::after {
+   content: '';
+   position: absolute;
+   left: 0.25em;
+   top: 50%;
+   width: 0.85em;
+   height: 0.85em;
+   border-radius: 50%;
+   background: var(--mu-text-muted);
+   transform: translateY(-50%);
+   transition: transform var(--mu-transition), background var(--mu-transition);
+   pointer-events: none;
+}
+
+.toggle:hover::before {
+   border-color: var(--mu-text-muted);
+}
+
+.toggle:has(input:checked)::before {
+   background: var(--mu-accent);
+   border-color: var(--mu-accent);
+}
+
+.toggle:has(input:checked)::after {
+   transform: translateY(-50%) translateX(1.05em);
+   background: #fff;
+}
+
+.toggle:has(input:checked) {
+   color: var(--mu-text-main);
+}
+
 
 /* =========================================
    BADGES
@@ -586,20 +779,178 @@ select option {
    FOOTER
    ========================================= */
 
+/*
+ * Base footer — always include .footer, then add one optional modifier:
+ *
+ *   .footer-solid      — raised solid surface, top border
+ *   .footer-gradient   — fades from page bg down to accent color
+ *   .footer-minimal    — just a top divider line, no background
+ *   .footer-flush      — no padding, no border, sits tight to content
+ *
+ * Layout helpers (use inside .footer):
+ *   .footer-cols       — multi-column layout (3-col, collapses on mobile)
+ *   .footer-col        — individual column inside .footer-cols
+ *   .footer-logo       — brand row: icon + name lockup
+ *   .footer-links      — horizontal link list
+ *   .footer-copy       — copyright / bottom bar text
+ *   .footer-divider    — thin separator line inside the footer
+ */
+
 .footer {
    width: 100%;
-   padding: 2.5rem 0 1.5rem;
-   opacity: 0.65;
-   font-size: 0.95rem;
-   text-align: center;
+   padding: 2.5rem 1.5rem 1.5rem;
    margin-top: auto;
+   font-size: 0.9rem;
    color: var(--mu-text-muted);
+   position: relative;
+}
+
+/* Links inside any footer variant */
+.footer a {
+   color: var(--mu-text-muted);
+   transition: var(--mu-transition);
 }
 
 .footer a:hover,
 .footer a:active {
    color: var(--mu-accent);
    text-decoration: underline;
+}
+
+/* --- Modifier: Solid --- */
+/* Raised surface with a top border — clean separation from page content */
+.footer.footer-solid {
+   background: var(--mu-surface);
+   border-top: 1px solid var(--mu-border);
+}
+
+/* --- Modifier: Gradient --- */
+/* Fades from page background at top down to accent at bottom */
+.footer.footer-gradient {
+   background: linear-gradient(
+      to bottom,
+      var(--mu-primary-bg) 0%,
+      rgba(255, 65, 54, 0.18) 100%
+   );
+   border-top: 1px solid var(--mu-border-accent);
+}
+
+/* Slightly dim the text in gradient footers so it doesn't clash */
+.footer.footer-gradient .footer-copy {
+   opacity: 0.7;
+}
+
+/* --- Modifier: Minimal --- */
+/* Just a top rule, transparent background, no visual weight */
+.footer.footer-minimal {
+   border-top: 1px solid var(--mu-border);
+   padding-top: 1.5rem;
+   opacity: 0.65;
+   text-align: center;
+}
+
+/* --- Modifier: Flush --- */
+/* Zero padding, no border — attaches directly under content */
+.footer.footer-flush {
+   padding: 0;
+   border: none;
+   opacity: 0.55;
+   text-align: center;
+}
+
+/* --- Layout: Columns --- */
+.footer-cols {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: var(--mu-space-4);
+   margin-bottom: var(--mu-space-3);
+}
+
+.footer-col {
+   display: flex;
+   flex-direction: column;
+   gap: 0.6rem;
+}
+
+.footer-col-title {
+   font-size: 0.75rem;
+   text-transform: uppercase;
+   letter-spacing: 0.1em;
+   color: var(--mu-text-main);
+   margin-bottom: 0.4rem;
+   font-family: var(--mu-font-heading);
+}
+
+/* --- Layout: Logo lockup --- */
+.footer-logo {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   font-family: var(--mu-font-heading);
+   font-size: 1.1rem;
+   color: var(--mu-text-main);
+   margin-bottom: 0.6rem;
+   text-decoration: none;
+}
+
+.footer-logo:hover {
+   text-decoration: none;
+   color: var(--mu-text-main);
+}
+
+/*
+ * Independent brand-cube positioning for footer context.
+ * Adjust these without affecting the header version.
+ * top/width/height can be tuned here freely.
+ */
+.footer-logo .brand-cube {
+   width: 0.85em;
+   height: 0.85em;
+   top: -0.12em;
+   vertical-align: middle;
+}
+
+/* --- Layout: Horizontal link list --- */
+.footer-links {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.3rem 1.25rem;
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+.footer-links li {
+   margin: 0;
+   padding: 0;
+}
+
+/* --- Layout: Copyright / bottom bar --- */
+.footer-copy {
+   font-size: 0.85rem;
+   color: var(--mu-text-muted);
+   text-align: center;
+   padding-top: var(--mu-space-2);
+}
+
+/* --- Layout: Internal divider --- */
+.footer-divider {
+   border: 0;
+   border-top: 1px solid var(--mu-border);
+   margin: var(--mu-space-2) 0;
+}
+
+/* --- Mobile --- */
+@media (max-width: 580px) {
+   .footer-cols {
+      grid-template-columns: 1fr;
+      gap: var(--mu-space-3);
+   }
+
+   .footer-links {
+      flex-direction: column;
+      gap: 0.5rem;
+   }
 }
 
 /* =========================================
@@ -758,6 +1109,7 @@ img.brand-cube {
 
    .input-group {
       flex-direction: column;
+      gap: var(--mu-space-1);
    }
 
    .input-group .input,
