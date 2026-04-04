@@ -17,7 +17,7 @@
             text-transform: uppercase;
             letter-spacing: 0.12em;
             color: var(--mu-accent);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             display: block;
             font-family: var(--mu-font-heading);
          }
@@ -37,35 +37,144 @@
             vertical-align: middle;
             margin-left: 0.5rem;
          }
+         .section-heading-2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--mu-border);
+         }
+         .section-heading-3 {
+            font-size: 1.05rem;
+            color: var(--mu-text-main);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-family: var(--mu-font-heading);
+         }
       </style>
    </head>
    <body>
+
+      <!-- ── DEMO NAVBAR ── -->
+      <nav class="navbar navbar-sticky navbar-blur">
+         <a class="navbar-brand">
+            <img class="brand-cube" src="s17-icon.svg" alt="s17 Labs"> Minimal-UI
+         </a>
+         <div class="navbar-menu" id="nav-menu">
+            <a href="#home" class="navbar-link active">Docs</a>
+            <a href="#install" class="navbar-link">Get Started</a>
+            <a href="#components" class="navbar-link">Components</a>
+         </div>
+         <span class="badge"><i class="fa-solid fa-tag" style="font-size:0.7rem"></i>v0.2.0</span>
+         <div class="navbar-actions">
+            <a href="https://s17labs.github.io" class="btn btn-sm" target="_blank">
+               <i class="fa-solid fa-arrow-up-right-from-square"></i> <b>s17 Labs</b>
+            </a>
+            <a href="https://github.com/s17labs/minimal-ui" class="btn btn-accent btn-sm" target="_blank">
+               <i class="fa-brands fa-github"></i> <b>Source</b>
+            </a>
+         </div>
+         <button class="navbar-hamburger" id="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+         </button>
+      </nav>
+
       <div class="container fade-in">
 
          <!-- ── HEADER ── -->
-         <header class="text-center" style="margin: 4rem 0;">
-            <h1><img class="brand-cube" src="s17-icon.svg" alt="s17 Labs"> Minimal-UI <span class="version-badge">v0.2.0</span></h1>
-            <p>Minimalist CSS framework for rapid prototyping by <b><a href="https://s17labs.github.io" class="link text-main">s17 Labs</a></b>.</p>
-            <div class="flex justify-center gap-1 mt-3 mobile-col">
-               <a href="https://github.com/s17labs/minimal-ui" class="btn" target="_blank">
-                  <i class="fa-brands fa-github"></i> View Source
-               </a>
-               <a href="https://s17labs.github.io" class="btn btn-muted" target="_blank">
-                  s17 Labs
-               </a>
-            </div>
-         </header>
+         <section id="home">
+           <header class="text-center" style="margin: 4rem 0;">
+              <h1><img class="brand-cube" src="s17-icon.svg" alt="s17 Labs"> Minimal-UI</h1>
+              <p>Minimalist CSS framework for rapid prototyping by <b><a href="https://s17labs.github.io" class="link text-main">s17 Labs</a></b>.</p>
+              <div class="flex justify-center gap-1 mt-3 mobile-col">
+                 <a href="https://github.com/s17labs/minimal-ui" class="btn" target="_blank">
+                    <i class="fa-brands fa-github"></i> View Source
+                 </a>
+              </div>
+           </header>
+         </section>
 
          <hr class="divider">
 
-         <!-- ── TYPOGRAPHY ── -->
-         <section>
-            <span class="demo-label">Typography</span>
+         <!-- ── GET STARTED ── -->
+         <section id="install">
+            <h2 class="section-heading-2">Get Started</h2>
+            <p>Minimal-UI is a zero-dependency CSS framework — no build step, no npm, no config. Add one <code>&lt;link&gt;</code> tag to your HTML and every component is ready to use. Works with plain HTML files, any backend, or any frontend framework.</p>
+
+            <h3 class="section-heading-3">1. Link the stylesheet</h3>
+            <p class="text-sm text-muted margin-min">The only required step. Paste this into your <code>&lt;head&gt;</code>:</p>
+            <pre class="code-block">&lt;link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/s17labs/minimal-ui@latest/minimal-ui.css"&gt;</pre>
+
+            <h3 class="section-heading-3">2. Add the Aldrich font</h3>
+            <p class="text-sm text-muted margin-min">Required for headings and the brand typeface:</p>
+            <pre class="code-block">&lt;link href="https://fonts.googleapis.com/css2?family=Aldrich&amp;display=swap"
+      rel="stylesheet"&gt;</pre>
+
+            <h3 class="section-heading-3">3. Start building</h3>
+            <p>That's it. You now have access to every component — buttons, forms, cards, navbar, tooltips, accordion, footer variants, and more. Browse the <a href="#components" class="link text-main">Components</a> section below to see everything available.</p>
+
+            <!-- Optional steps — collapsible -->
+            <div class="accordion accordion-flush mt-3">
+
+               <details class="accordion-item">
+                  <summary class="accordion-header">Optional — Font Awesome icons</summary>
+                  <div class="accordion-body">
+                     <p class="margin-min">Many examples in these docs use Font Awesome icons. Not required by the framework itself — only needed if you use <code>&lt;i class="fa-..."&gt;</code> in your markup.</p>
+                     <pre class="code-block">&lt;link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"&gt;</pre>
+                  </div>
+               </details>
+
+               <details class="accordion-item">
+                  <summary class="accordion-header">Optional — s17 Labs brand icon</summary>
+                  <div class="accordion-body">
+                     <p class="margin-min">Use the red square brand mark in any project header or footer via CDN — no file to copy or download:</p>
+                     <pre class="code-block">&lt;img class="brand-cube"
+     src="https://cdn.jsdelivr.net/gh/s17labs/minimal-ui@latest/s17-icon.svg"
+     alt="s17 Labs"&gt;</pre>
+                     <p>Alternatively, copy <code>s17-icon.svg</code> from the repo into your project and reference it locally. The <code>.brand-cube</code> class handles sizing and alignment automatically.</p>
+                  </div>
+               </details>
+
+               <details class="accordion-item">
+                  <summary class="accordion-header">Optional — Navbar hamburger JS</summary>
+                  <div class="accordion-body">
+                     <p class="margin-min">The navbar is fully CSS-based except for the mobile hamburger toggle. Add this before your closing <code>&lt;/body&gt;</code> tag — it's the only JS the framework ever needs:</p>
+                     <pre class="code-block">&lt;script&gt;
+  document.getElementById('nav-toggle')
+    .addEventListener('click', () => {
+      document.getElementById('nav-menu').classList.toggle('open');
+      document.getElementById('nav-toggle').classList.toggle('open');
+    });
+&lt;/script&gt;</pre>
+                     <p>The <code>open</code> class on <code>#nav-menu</code> reveals the mobile dropdown. The <code>open</code> class on <code>#nav-toggle</code> animates the three bars into an ✕ close icon.</p>
+                  </div>
+               </details>
+
+            </div>
+
+            <div class="alert mt-3">
+               <i class="fa-solid fa-circle-info alert-icon"></i>
+               <div>
+                  <p class="alert-title">Pin a specific version</p>
+                  Replace <code>@latest</code> with a release tag like <code>@v0.2.0</code> to lock your project to a specific version and avoid unexpected changes from future updates.
+               </div>
+            </div>
+         </section>
+
+         <hr class="divider">
+
+         <!-- ── COMPONENTS ── -->
+         <section id="components">
+            <h2 class="section-heading-2">Components</h2>
+
+            <!-- TYPOGRAPHY -->
+            <h3 class="section-heading-3">Typography</h3>
             <h1>Heading 1 <span class="text-muted text-lg font-heading">/ h1</span></h1>
             <h2>Heading 2 <span class="text-muted font-heading" style="font-size:1rem">/ h2</span></h2>
             <h3>Heading 3</h3>
             <p>Standard paragraph — <code>--mu-text-muted</code> color. Highly readable against dark backgrounds while maintaining a clean typographic hierarchy.</p>
-            <div class="demo-row">
+            <div class="demo-row mb-4">
                <span class="text-main">.text-main</span>
                <span class="text-muted">.text-muted</span>
                <span class="text-accent">.text-accent</span>
@@ -75,14 +184,14 @@
                <span class="uppercase text-muted">.uppercase</span>
                <code class="font-mono">.font-mono</code>
             </div>
-         </section>
 
-         <!-- ── BUTTONS ── -->
-         <section>
-            <span class="demo-label">Buttons</span>
-            <p class="text-sm text-muted mb-2">All variants and sizes, composable with each other.</p>
+            <hr class="divider">
 
-            <p class="text-sm text-muted margin-min">Variants</p>
+            <!-- BUTTONS -->
+            <h3 class="section-heading-3">Buttons</h3>
+            <p class="text-sm text-muted mb-2">All variants and sizes, composable with each other. Works identically on <code>&lt;button&gt;</code> and <code>&lt;a&gt;</code>.</p>
+
+            <span class="demo-label">Variants</span>
             <div class="demo-row mb-3">
                <button class="btn"><i class="fa-solid fa-cube"></i> Default</button>
                <button class="btn btn-accent"><i class="fa-solid fa-bolt"></i> Accent</button>
@@ -92,14 +201,14 @@
                <button class="btn" disabled>Disabled</button>
             </div>
 
-            <p class="text-sm text-muted margin-min">Sizes</p>
+            <span class="demo-label">Sizes</span>
             <div class="demo-row mb-3">
                <button class="btn btn-sm">Small</button>
                <button class="btn">Default</button>
                <button class="btn btn-lg">Large</button>
             </div>
 
-            <p class="text-sm text-muted margin-min">Icon Buttons</p>
+            <span class="demo-label">Icon Buttons</span>
             <div class="demo-row mb-3">
                <button class="btn btn-icon btn-sm"><i class="fa-solid fa-xmark"></i></button>
                <button class="btn btn-icon"><i class="fa-solid fa-arrow-right"></i></button>
@@ -107,29 +216,27 @@
                <button class="btn btn-icon btn-outline"><i class="fa-brands fa-github"></i></button>
             </div>
 
-            <p class="text-sm text-muted margin-min">Full width (use inside <code>.mobile-col</code>)</p>
-            <div class="flex mobile-col gap-1" style="max-width: 400px;">
+            <span class="demo-label">Full width (inside <code>.mobile-col</code>)</span>
+            <div class="flex mobile-col gap-1 mb-4" style="max-width: 400px;">
                <button class="btn btn-accent flex-1"><i class="fa-solid fa-bolt"></i> Primary Action</button>
                <button class="btn flex-1">Secondary</button>
             </div>
-         </section>
 
-         <!-- ── LINKS ── -->
-         <section>
-            <span class="demo-label">Links</span>
-            <div class="demo-row">
+            <hr class="divider">
+
+            <!-- LINKS -->
+            <h3 class="section-heading-3">Links</h3>
+            <div class="demo-row mb-4">
                <a href="#" class="link text-main">Default Link</a>
                <a href="#" class="link text-muted">Muted Link</a>
                <a href="#" class="link text-accent link-accent">Accent Link</a>
                <a href="#" class="link-ghost text-muted">Ghost Link</a>
             </div>
-         </section>
 
-         <hr class="divider">
+            <hr class="divider">
 
-         <!-- ── FORMS ── -->
-         <section>
-            <span class="demo-label">Forms</span>
+            <!-- FORMS -->
+            <h3 class="section-heading-3">Forms</h3>
             <div class="grid-2 mb-3">
                <div class="form-group">
                   <label>First Name</label>
@@ -158,59 +265,39 @@
                <textarea class="textarea" placeholder="Write something..."></textarea>
             </div>
             <div class="form-group mb-3">
-               <p class="text-sm text-muted margin-min">Input Group</p>
+               <span class="demo-label">Input Group</span>
                <div class="input-group">
                   <input type="email" class="input" placeholder="Enter your email">
                   <button class="btn btn-accent">Subscribe</button>
                </div>
             </div>
 
-            <p class="text-sm text-muted margin-min">Checkboxes</p>
+            <span class="demo-label">Checkboxes</span>
             <div class="demo-row mb-2">
-               <label class="checkbox-group">
-                  <input type="checkbox" checked><span>Accept terms</span>
-               </label>
-               <label class="checkbox-group">
-                  <input type="checkbox"><span>Marketing emails</span>
-               </label>
-               <label class="checkbox-group">
-                  <input type="checkbox" disabled><span>Disabled</span>
-               </label>
+               <label class="checkbox-group"><input type="checkbox" checked><span>Accept terms</span></label>
+               <label class="checkbox-group"><input type="checkbox"><span>Marketing emails</span></label>
+               <label class="checkbox-group"><input type="checkbox" disabled><span>Disabled</span></label>
             </div>
 
-            <p class="text-sm text-muted margin-min">Radios</p>
+            <span class="demo-label">Radios</span>
             <div class="demo-row mb-2">
-               <label class="radio-group">
-                  <input type="radio" name="demo" checked><span>Option A</span>
-               </label>
-               <label class="radio-group">
-                  <input type="radio" name="demo"><span>Option B</span>
-               </label>
-               <label class="radio-group">
-                  <input type="radio" name="demo" disabled><span>Disabled</span>
-               </label>
+               <label class="radio-group"><input type="radio" name="demo" checked><span>Option A</span></label>
+               <label class="radio-group"><input type="radio" name="demo"><span>Option B</span></label>
+               <label class="radio-group"><input type="radio" name="demo" disabled><span>Disabled</span></label>
             </div>
 
-            <p class="text-sm text-muted margin-min">Toggles</p>
-            <div class="demo-row">
-               <label class="toggle">
-                  <input type="checkbox" checked><span>Enabled</span>
-               </label>
-               <label class="toggle">
-                  <input type="checkbox"><span>Off</span>
-               </label>
-               <label class="toggle">
-                  <input type="checkbox" disabled><span>Disabled</span>
-               </label>
+            <span class="demo-label">Toggles</span>
+            <div class="demo-row mb-4">
+               <label class="toggle"><input type="checkbox" checked><span>Enabled</span></label>
+               <label class="toggle"><input type="checkbox"><span>Off</span></label>
+               <label class="toggle"><input type="checkbox" disabled><span>Disabled</span></label>
             </div>
-         </section>
 
-         <hr class="divider">
+            <hr class="divider">
 
-         <!-- ── BADGES ── -->
-         <section>
-            <span class="demo-label">Badges</span>
-            <div class="demo-row">
+            <!-- BADGES -->
+            <h3 class="section-heading-3">Badges</h3>
+            <div class="demo-row mb-4">
                <span class="badge">Default</span>
                <span class="badge badge-accent">Accent</span>
                <span class="badge badge-muted">Muted</span>
@@ -219,11 +306,11 @@
                <span class="badge badge-muted badge-dot">Draft</span>
                <span class="badge"><i class="fa-brands fa-github" style="font-size:0.7rem"></i> GitHub</span>
             </div>
-         </section>
 
-         <!-- ── ALERTS ── -->
-         <section>
-            <span class="demo-label">Alerts</span>
+            <hr class="divider">
+
+            <!-- ALERTS -->
+            <h3 class="section-heading-3">Alerts</h3>
             <div class="alert">
                <i class="fa-solid fa-circle-info alert-icon"></i>
                <div>
@@ -231,65 +318,61 @@
                   Default alert for neutral notices and informational messages.
                </div>
             </div>
-            <div class="alert alert-accent">
+            <div class="alert alert-accent mb-4">
                <i class="fa-solid fa-triangle-exclamation alert-icon"></i>
                <div>
                   <p class="alert-title">Action required</p>
                   Accent alert for important messages that require user attention.
                </div>
             </div>
-         </section>
 
-         <hr class="divider">
+            <hr class="divider">
 
-         <!-- ── CODE ── -->
-         <section>
-            <span class="demo-label">Code</span>
+            <!-- CODE -->
+            <h3 class="section-heading-3">Code</h3>
             <p>Use <code>.btn-accent</code> for primary actions and <code>.btn-outline</code> for secondary CTAs.</p>
-            <pre class="code-block">/* Import Minimal-UI */
+            <pre class="code-block mb-4">/* Import Minimal-UI */
 @import url('minimal-ui.css');
 
 /* Use components */
 &lt;button class="btn btn-accent"&gt;
    Click me
 &lt;/button&gt;</pre>
-         </section>
 
-         <!-- ── DIVIDERS ── -->
-         <section>
-            <span class="demo-label">Dividers</span>
-            <p class="text-muted text-sm">Standard divider below:</p>
+            <hr class="divider">
+
+            <!-- DIVIDERS -->
+            <h3 class="section-heading-3">Dividers</h3>
+            <p class="text-muted text-sm">Standard divider:</p>
             <hr class="divider">
             <p class="text-muted text-sm">Labelled divider:</p>
             <div class="divider-label">or continue with</div>
-            <div class="demo-row mt-2">
+            <div class="demo-row mt-2 mb-4">
                <button class="btn btn-muted flex-1"><i class="fa-brands fa-github"></i> GitHub</button>
                <button class="btn btn-muted flex-1"><i class="fa-brands fa-google"></i> Google</button>
             </div>
-         </section>
 
-         <hr class="divider">
+            <hr class="divider">
 
-         <!-- ── GRID ── -->
-         <section>
-            <span class="demo-label">Grid</span>
-            <p class="text-sm text-muted margin-min">.grid-2</p>
+            <!-- GRID -->
+            <h3 class="section-heading-3">Grid</h3>
+            <span class="demo-label">.grid-2</span>
             <div class="grid-2 mb-3">
                <div class="surface-raised text-center p-2 text-muted text-sm">Col 1</div>
                <div class="surface-raised text-center p-2 text-muted text-sm">Col 2</div>
             </div>
-            <p class="text-sm text-muted margin-min">.grid-3</p>
-            <div class="grid-3">
+            <span class="demo-label">.grid-3</span>
+            <div class="grid-3 mb-4">
                <div class="surface-raised text-center p-2 text-muted text-sm">Col 1</div>
                <div class="surface-raised text-center p-2 text-muted text-sm">Col 2</div>
                <div class="surface-raised text-center p-2 text-muted text-sm">Col 3</div>
             </div>
-         </section>
 
-         <!-- ── SURFACES ── -->
-         <section>
-            <span class="demo-label">Surfaces</span>
-            <div class="grid-2">
+            <hr class="divider">
+
+            <!-- SURFACES -->
+            <h3 class="section-heading-3">Surfaces</h3>
+            <div class="grid-2 mb-4">
                <div class="surface">
                   <p class="text-sm text-muted margin-min">.surface</p>
                   <p class="margin-0 text-sm">Subtle transparent fill, no border.</p>
@@ -299,27 +382,25 @@
                   <p class="margin-0 text-sm">Elevated with border — good for cards.</p>
                </div>
             </div>
-         </section>
 
-         <hr class="divider">
+            <hr class="divider">
 
-         <!-- ── CARDS ── -->
-         <section>
-            <span class="demo-label">Cards</span>
-            <div class="card">
+            <!-- CARDS -->
+            <h3 class="section-heading-3">Cards</h3>
+            <div class="card mb-4">
                <h3>Feature Card</h3>
                <p>Cards use a subtle background to group related content. Combine with badges, buttons, and grid for layout blocks.</p>
                <div class="demo-row">
                   <span class="badge badge-accent">New</span>
-                  <span class="badge">v0.1.0</span>
+                  <span class="badge">v0.2.0</span>
                </div>
             </div>
-         </section>
 
-         <!-- ── INTERACTIVE LISTS ── -->
-         <section>
-            <span class="demo-label">Interactive Lists</span>
-            <div class="list-group">
+            <hr class="divider">
+
+            <!-- INTERACTIVE LISTS -->
+            <h3 class="section-heading-3">Interactive Lists</h3>
+            <div class="list-group mb-4">
                <a href="#" class="list-item">
                   <div>
                      <h3>Project Alpha <span class="badge badge-accent" style="vertical-align:middle;font-size:0.65rem;">Live</span></h3>
@@ -335,23 +416,117 @@
                   <i class="fa-solid fa-arrow-right icon-arrow"></i>
                </a>
             </div>
-         </section>
 
-         <hr class="divider">
+            <hr class="divider">
 
-         <!-- ── FOOTERS ── -->
-         <section>
-            <span class="demo-label">Footer Variants</span>
+            <!-- NAVBAR -->
+            <h3 class="section-heading-3">Navbar</h3>
 
-            <!-- Minimal -->
-            <p class="text-sm text-muted margin-min">.footer.footer-minimal</p>
+            <div class="alert mb-3">
+               <i class="fa-solid fa-circle-info alert-icon"></i>
+               <div>
+                  <p class="alert-title">One line of JS required for the hamburger menu</p>
+                  Everything else is pure CSS. For the mobile hamburger toggle, see the <a href="#install" class="link text-main">Get Started</a> section — it's a single <code>addEventListener</code> call.
+               </div>
+            </div>
+
+            <span class="demo-label">Static</span>
+            <nav class="navbar mb-3" style="border-radius: var(--mu-radius); border: 1px solid var(--mu-border);">
+               <a class="navbar-brand" href="#">
+                  <img class="brand-cube" src="s17-icon.svg" alt=""> s17 Labs.
+               </a>
+               <div class="navbar-menu">
+                  <a href="#" class="navbar-link active">Home</a>
+                  <a href="#" class="navbar-link">Projects</a>
+                  <a href="#" class="navbar-link">About</a>
+               </div>
+               <div class="navbar-actions">
+                  <a href="#" class="btn btn-sm">Log in</a>
+                  <a href="#" class="btn btn-accent btn-sm">Sign up</a>
+               </div>
+            </nav>
+
+            <span class="demo-label">Brand only + actions</span>
+            <nav class="navbar mb-4" style="border-radius: var(--mu-radius); border: 1px solid var(--mu-border);">
+               <a class="navbar-brand" href="#">
+                  <img class="brand-cube" src="s17-icon.svg" alt=""> s17 Labs.
+               </a>
+               <div class="navbar-actions">
+                  <button class="btn btn-icon btn-sm btn-ghost" data-tooltip="Settings"><i class="fa-solid fa-gear"></i></button>
+                  <button class="btn btn-icon btn-sm btn-ghost" data-tooltip="Notifications"><i class="fa-solid fa-bell"></i></button>
+                  <a href="#" class="btn btn-accent btn-sm">New project</a>
+               </div>
+            </nav>
+
+            <hr class="divider">
+
+            <!-- TOOLTIP -->
+            <h3 class="section-heading-3">Tooltips</h3>
+            <p class="text-sm text-muted mb-2">Add <code>data-tooltip="..."</code> to any element. No JS required.</p>
+            <div class="demo-row mb-4" style="padding: 2rem 0;">
+               <button class="btn" data-tooltip="Default — appears above">Hover (top)</button>
+               <button class="btn tooltip-bottom" data-tooltip="Appears below">Hover (bottom)</button>
+               <button class="btn tooltip-left" data-tooltip="Appears left">Hover (left)</button>
+               <button class="btn tooltip-right" data-tooltip="Appears right">Hover (right)</button>
+               <button class="btn btn-icon btn-accent" data-tooltip="Save changes"><i class="fa-solid fa-floppy-disk"></i></button>
+               <span class="badge badge-accent" data-tooltip="Released April 2026">v0.2.0</span>
+            </div>
+
+            <hr class="divider">
+
+            <!-- ACCORDION -->
+            <h3 class="section-heading-3">Accordion</h3>
+
+            <span class="demo-label">Default</span>
+            <div class="accordion mb-3">
+               <details class="accordion-item" open>
+                  <summary class="accordion-header">What is Minimal-UI?</summary>
+                  <div class="accordion-body">
+                     <p>Minimal-UI is a lightweight CSS framework built for rapid prototyping, designed with the s17 Labs dark aesthetic in mind.</p>
+                  </div>
+               </details>
+               <details class="accordion-item">
+                  <summary class="accordion-header">How do I install it?</summary>
+                  <div class="accordion-body">
+                     <p>Link the CDN stylesheet in your HTML head — no build step or npm install required. Works with any plain HTML file.</p>
+                  </div>
+               </details>
+               <details class="accordion-item">
+                  <summary class="accordion-header">Does it require JavaScript?</summary>
+                  <div class="accordion-body">
+                     <p>Almost nothing requires JS. The accordion uses native <code>&lt;details&gt;</code>, tooltips are pure CSS, and form controls use <code>:has()</code>. Only the navbar hamburger needs a one-liner toggle.</p>
+                  </div>
+               </details>
+            </div>
+
+            <span class="demo-label">.accordion-flush</span>
+            <div class="accordion accordion-flush mb-4">
+               <details class="accordion-item">
+                  <summary class="accordion-header">Can I use this in commercial projects?</summary>
+                  <div class="accordion-body">
+                     <p>Yes — Minimal-UI is open source. Check the repository for the full license details.</p>
+                  </div>
+               </details>
+               <details class="accordion-item">
+                  <summary class="accordion-header">How do I customize the colors?</summary>
+                  <div class="accordion-body">
+                     <p>Override any CSS variable from <code>:root</code> in your own stylesheet. Every color, radius, and spacing value is a variable.</p>
+                  </div>
+               </details>
+            </div>
+
+            <hr class="divider">
+
+            <!-- FOOTER VARIANTS -->
+            <h3 class="section-heading-3">Footer Variants</h3>
+
+            <span class="demo-label">.footer.footer-minimal</span>
             <footer class="footer footer-minimal" style="margin-bottom: 2rem;">
                © <script>document.write(new Date().getFullYear())</script> s17 Labs.
                <a href="#">GitHub</a> · <a href="#">Docs</a>
             </footer>
 
-            <!-- Solid -->
-            <p class="text-sm text-muted margin-min">.footer.footer-solid</p>
+            <span class="demo-label">.footer.footer-solid</span>
             <footer class="footer footer-solid" style="margin-bottom: 2rem; border-radius: var(--mu-radius);">
                <div class="footer-cols">
                   <div class="footer-col">
@@ -380,8 +555,7 @@
                <p class="footer-copy">© <script>document.write(new Date().getFullYear())</script> s17 Labs. All rights reserved.</p>
             </footer>
 
-            <!-- Gradient -->
-            <p class="text-sm text-muted margin-min">.footer.footer-gradient</p>
+            <span class="demo-label">.footer.footer-gradient</span>
             <footer class="footer footer-gradient" style="margin-bottom: 2rem; border-radius: var(--mu-radius);">
                <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
                   <a href="#" class="footer-logo">
@@ -397,11 +571,11 @@
                <p class="footer-copy">© <script>document.write(new Date().getFullYear())</script> s17 Labs.</p>
             </footer>
 
-            <!-- Flush -->
-            <p class="text-sm text-muted margin-min">.footer.footer-flush</p>
+            <span class="demo-label">.footer.footer-flush</span>
             <footer class="footer footer-flush" style="padding: 1rem 0 0;">
                © <script>document.write(new Date().getFullYear())</script> s17 Labs · <a href="#">Source Code</a>
             </footer>
+
          </section>
 
       </div>
@@ -423,5 +597,15 @@
          </div>
       </footer>
 
+   <script>
+      const navToggle = document.getElementById('nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      if (navToggle && navMenu) {
+         navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            navToggle.classList.toggle('open');
+         });
+      }
+   </script>
    </body>
 </html>

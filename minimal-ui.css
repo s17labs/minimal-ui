@@ -42,6 +42,17 @@
    box-sizing: border-box;
 }
 
+/* Global selection style */
+::selection {
+  background-color: var(--mu-border-accent);  /* The highlight color */
+  color: var(--mu-text-main);                /* The text color when selected */
+}
+
+html {
+  scroll-padding-top: 68px;
+   scroll-behavior: smooth;
+}
+
 body {
    margin: 0;
    padding: 0;
@@ -273,6 +284,8 @@ button.btn {
    white-space: nowrap;
    box-sizing: border-box;
    transition: var(--mu-transition);
+   user-select: none;
+   -webkit-user-select: none;
 }
 
 .btn:hover {
@@ -888,14 +901,14 @@ select option {
    gap: 0.5rem;
    font-family: var(--mu-font-heading);
    font-size: 1.1rem;
-   color: var(--mu-text-main);
+   color: var(--mu-text-main) !important;
    margin-bottom: 0.6rem;
    text-decoration: none;
 }
 
 .footer-logo:hover {
    text-decoration: none;
-   color: var(--mu-text-main);
+   color: var(--mu-text-main) !important;
 }
 
 /*
@@ -1089,8 +1102,434 @@ img.brand-cube {
 }
 
 /* =========================================
-   MOBILE RESPONSIVENESS
+   NAVBAR
    ========================================= */
+
+/*
+ * Usage:
+ *   <nav class="navbar">
+ *     <a class="navbar-brand" href="#">
+ *       <img class="brand-cube" src="s17-icon.svg" alt=""> s17 Labs.
+ *     </a>
+ *     <button class="navbar-hamburger" id="nav-toggle" aria-label="Menu">
+ *       <span></span><span></span><span></span>
+ *     </button>
+ *     <div class="navbar-menu" id="nav-menu">
+ *       <a href="#" class="navbar-link">Home</a>
+ *       <a href="#" class="navbar-link">Projects</a>
+ *     </div>
+ *     <div class="navbar-actions">
+ *       <a href="#" class="btn btn-accent btn-sm">Sign up</a>
+ *     </div>
+ *   </nav>
+ *
+ * Modifiers:
+ *   .navbar-sticky  — sticks to top of viewport while scrolling
+ *   .navbar-blur    — frosted glass backdrop blur background
+ *
+ * JS toggle (add to your page):
+ *   document.getElementById('nav-toggle')
+ *     .addEventListener('click', () =>
+ *       document.getElementById('nav-menu').classList.toggle('open'));
+ */
+
+.navbar {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+   padding: 0 1.5rem;
+   height: 3.5rem;
+   background: var(--mu-primary-bg);
+   border-bottom: 1px solid var(--mu-border);
+   position: relative;
+   z-index: 100;
+   user-select: none;
+   -webkit-user-select: none;
+}
+
+/* Sticky modifier */
+.navbar.navbar-sticky {
+   position: sticky;
+   top: 0;
+}
+
+/* Blur modifier */
+.navbar.navbar-blur {
+   background: rgba(14, 14, 16, 0.75);
+   backdrop-filter: blur(12px);
+   -webkit-backdrop-filter: blur(12px);
+}
+
+/* Brand / logo slot */
+.navbar-brand {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.4rem;
+   font-family: var(--mu-font-heading);
+   font-size: 1.1rem;
+   color: var(--mu-text-main) !important;
+   white-space: nowrap;
+   text-decoration: none;
+   flex-shrink: 0;
+}
+
+.navbar-brand:hover {
+   color: var(--mu-text-main) !important;
+   text-decoration: none;
+}
+
+/* Brand cube inside navbar — matches footer-logo .brand-cube positioning */
+.navbar-brand .brand-cube {
+   width: 0.85em;
+   height: 0.85em;
+   top: -0.12em;
+   vertical-align: middle;
+}
+
+/* Nav links — desktop */
+.navbar-menu {
+   display: flex;
+   align-items: center;
+   gap: 0.25rem;
+   flex: 1;
+}
+
+.navbar-link {
+   font-size: 0.9rem;
+   color: var(--mu-text-muted);
+   padding: 0.4rem 0.75rem;
+   border-radius: var(--mu-radius);
+   transition: var(--mu-transition);
+   white-space: nowrap;
+   text-decoration: none;
+}
+
+.navbar-link:hover {
+   color: var(--mu-text-main);
+   background: var(--mu-surface-hover);
+}
+
+.navbar-link.active {
+   color: var(--mu-text-main);
+}
+
+.navbar-link.active:hover {
+   background: var(--mu-surface-hover);
+}
+
+/* Right-side slot for buttons/icons */
+.navbar-actions {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   margin-left: auto;
+   flex-shrink: 0;
+}
+
+/* Hamburger button — hidden on desktop */
+.navbar-hamburger {
+   display: none;
+   flex-direction: column;
+   justify-content: center;
+   gap: 5px;
+   width: 2rem;
+   height: 2rem;
+   padding: 0;
+   background: none;
+   border: none;
+   cursor: pointer;
+   margin-left: auto;
+   flex-shrink: 0;
+}
+
+.navbar-hamburger span {
+   display: block;
+   width: 100%;
+   height: 1.5px;
+   background: var(--mu-text-muted);
+   border-radius: 2px;
+   transition: var(--mu-transition);
+}
+
+.navbar-hamburger:hover span {
+   background: var(--mu-text-main);
+}
+
+/* Hamburger → X when open */
+.navbar-hamburger.open span:nth-child(1) {
+   transform: translateY(6.5px) rotate(45deg);
+}
+.navbar-hamburger.open span:nth-child(2) {
+   opacity: 0;
+   transform: scaleX(0);
+}
+.navbar-hamburger.open span:nth-child(3) {
+   transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile breakpoint */
+@media (max-width: 580px) {
+   .navbar-hamburger {
+      display: flex;
+   }
+
+   .navbar-actions {
+      display: none;
+   }
+
+   .navbar-menu {
+      display: none;
+      position: absolute;
+      top: 3.5rem;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: var(--mu-surface);
+      border-bottom: 1px solid var(--mu-border);
+      padding: 0.5rem 0;
+      z-index: 99;
+      animation: fadeIn 0.2s ease-out;
+   }
+
+   .navbar-menu.open {
+      display: flex;
+   }
+
+   .navbar-link {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0;
+      font-size: 1rem;
+   }
+}
+
+/* =========================================
+   TOOLTIP
+   ========================================= */
+
+/*
+ * Pure CSS — no JS required.
+ * Add data-tooltip="Your text" to any element.
+ *
+ * Position modifiers (add to same element):
+ *   .tooltip-bottom
+ *   .tooltip-left
+ *   .tooltip-right
+ *
+ * Usage:
+ *   <button class="btn" data-tooltip="Save changes">Save</button>
+ *   <span data-tooltip="Info" class="tooltip-bottom">Hover me</span>
+ */
+
+[data-tooltip] {
+   position: relative;
+}
+
+/* The tooltip bubble */
+[data-tooltip]::before {
+   content: attr(data-tooltip);
+   position: absolute;
+   bottom: calc(100% + 8px);
+   left: 50%;
+   transform: translateX(-50%);
+   background: var(--mu-surface-raised);
+   color: var(--mu-text-main);
+   font-family: var(--mu-font-base);
+   font-size: 0.78rem;
+   line-height: 1.4;
+   white-space: nowrap;
+   padding: 0.35em 0.7em;
+   border-radius: var(--mu-radius);
+   border: 1px solid var(--mu-border);
+   pointer-events: none;
+   opacity: 0;
+   transition: opacity var(--mu-transition), transform var(--mu-transition);
+   z-index: 9999;
+}
+
+/* The arrow */
+[data-tooltip]::after {
+   content: '';
+   position: absolute;
+   bottom: calc(100% + -2px);
+   left: 50%;
+   transform: translateX(-50%);
+   border: 5px solid transparent;
+   border-top-color: var(--mu-border);
+   pointer-events: none;
+   opacity: 0;
+   transition: opacity var(--mu-transition);
+   z-index: 9999;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+   opacity: 1;
+}
+
+/* Bottom */
+.tooltip-bottom[data-tooltip]::before {
+   bottom: auto;
+   top: calc(100% + 8px);
+}
+
+.tooltip-bottom[data-tooltip]::after {
+   bottom: auto;
+   top: calc(100% + -2px);
+   border-top-color: transparent;
+   border-bottom-color: var(--mu-border);
+}
+
+/* Left */
+.tooltip-left[data-tooltip]::before {
+   bottom: auto;
+   top: 50%;
+   left: auto;
+   right: calc(100% + 8px);
+   transform: translateY(-50%);
+}
+
+.tooltip-left[data-tooltip]::after {
+   bottom: auto;
+   top: 50%;
+   left: auto;
+   right: calc(100% + -2px);
+   transform: translateY(-50%);
+   border-top-color: transparent;
+   border-left-color: var(--mu-border);
+}
+
+/* Right */
+.tooltip-right[data-tooltip]::before {
+   bottom: auto;
+   top: 50%;
+   left: calc(100% + 8px);
+   transform: translateY(-50%);
+}
+
+.tooltip-right[data-tooltip]::after {
+   bottom: auto;
+   top: 50%;
+   left: calc(100% + -2px);
+   transform: translateY(-50%);
+   border-top-color: transparent;
+   border-right-color: var(--mu-border);
+}
+
+/* =========================================
+   ACCORDION
+   ========================================= */
+
+/*
+ * Built on native <details>/<summary> — zero JS required.
+ *
+ * Usage:
+ *   <div class="accordion">
+ *     <details class="accordion-item">
+ *       <summary class="accordion-header">Question or title</summary>
+ *       <div class="accordion-body">
+ *         <p>Content goes here.</p>
+ *       </div>
+ *     </details>
+ *   </div>
+ *
+ * Modifiers:
+ *   .accordion-flush  — no outer border, borderless variant
+ */
+
+.accordion {
+   border: 1px solid var(--mu-border);
+   border-radius: var(--mu-radius-lg);
+   overflow: hidden;
+}
+
+.accordion-item {
+   border-bottom: 1px solid var(--mu-border);
+}
+
+.accordion-item:last-child {
+   border-bottom: none;
+}
+
+/* Remove default browser triangle */
+.accordion-item summary {
+   list-style: none;
+}
+.accordion-item summary::-webkit-details-marker {
+   display: none;
+}
+
+/* Header row */
+.accordion-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 1rem;
+   padding: 1rem 1.25rem;
+   cursor: pointer;
+   color: var(--mu-text-main);
+   font-size: 0.95rem;
+   font-family: var(--mu-font-base);
+   background: transparent;
+   user-select: none;
+   transition: background var(--mu-transition), color var(--mu-transition);
+}
+
+.accordion-header:hover {
+   background: var(--mu-surface-hover);
+}
+
+/* Custom arrow — rotates when open */
+.accordion-header::after {
+   content: '';
+   display: block;
+   flex-shrink: 0;
+   width: 0.5em;
+   height: 0.5em;
+   border-right: 1.5px solid var(--mu-text-muted);
+   border-bottom: 1.5px solid var(--mu-text-muted);
+   transform: rotate(45deg) translateY(-2px);
+   transition: transform var(--mu-transition), border-color var(--mu-transition);
+}
+
+.accordion-item[open] .accordion-header::after {
+   transform: rotate(-135deg) translateY(-2px);
+   border-color: var(--mu-accent);
+}
+
+.accordion-item[open] .accordion-header {
+   color: var(--mu-text-main);
+}
+
+/* Body content */
+.accordion-body {
+   padding: 0 1.25rem 1.25rem;
+   color: var(--mu-text-muted);
+   font-size: 0.95rem;
+   line-height: 1.7;
+}
+
+.accordion-body p:last-child {
+   margin-bottom: 0;
+}
+
+/* Flush variant — no outer border */
+.accordion.accordion-flush {
+   border: none;
+   border-radius: 0;
+}
+
+.accordion.accordion-flush .accordion-item {
+   border-bottom: 1px solid var(--mu-border);
+}
+
+.accordion.accordion-flush .accordion-item:last-child {
+   border-bottom: none;
+}
+
+
 
 @media (max-width: 580px) {
    /* Buttons only go full-width when inside .mobile-col */
